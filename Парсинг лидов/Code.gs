@@ -2244,7 +2244,7 @@ function RestRep(projects){
           MsgSubj=messages[j].getSubject();
          //attachments = messages[j].getAttachments()[0].getDataAsString(); 
           MsgBody=MsgBody.replace(/\n/ig, " ");
-          if (MsgBody.match(/<tbody(.*)?<\/tbody>/ig)!=null)
+          if (MsgBody.match(/<table(.*)?<\/table>/ig)!=null)
           {
             if (MsgSubj.match(/Google:/i)!=null){
               msg="google";
@@ -2252,7 +2252,7 @@ function RestRep(projects){
               msg="yandex";
             }
               
-            reg = MsgBody.match(/<tbody(.*)?<\/tbody>/ig)[0]
+            reg = MsgBody.match(/<table(.*)?<\/table>/ig)[0]
             var proj_rest = reg.match(/<tr bgcolor=(3D)?"#FFFFFF".*?<td>.*?<\/td><td>.*?<\/td>/ig);
             for (var k = 0; k < proj_rest.length; k++) 
             {// очистка
