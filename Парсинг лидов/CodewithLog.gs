@@ -1174,22 +1174,23 @@ function main()
       
       var res_date = attachments.match(/\d{2}\.\d{2}\.\d{4}/ig);
       var res_time = attachments.match(/\d{1,2}:\d{2}:\d{2}/ig);
-      var res_phone = attachments.match(/(--)?(M:|V:)?(\+)?\d{10,12}/ig);
       var res_dur = attachments.match(/>(\d{1,2}:\d{1,2}|1)</ig);
+      attachments = attachments.replace(/\s/gi, " ");
+      var res_phone = attachments.match(/\d{1,2}:\d{2}:\d{2}.*?<\/td>.*?<\/td>/ig);
+      
       // проверка 
       if (res_date!=null)
       {
         if (res_date.length!=res_time.length || res_time.length!=res_phone.length || res_phone.length!=res_dur.length) 
         {
           var msg = "ошибки при парсинге отчета по звонкам";
-          RecordToLog2(msg, TagMail, "звонок", period, url, script_vers);
           return false;
         }
         // для каждой записи в отчете по звонкам
         var t=0;
         for (var j = 0; j < res_phone.length; j++)
         { //если это номер входящего (обозначается <--)
-          if (res_phone[j].match(/--/)!= null)
+          if (res_phone[j].match(/--/)!= null & res_dur[j].match(/\d{1,2}:/ig)!= null)
           { 
             // если звонок проходит по длительности
             var tmp1 = res_dur[j].match(/\d{1,2}:/ig)[0];
@@ -1205,9 +1206,10 @@ function main()
               var name="-";
               var email="-";
               var note="";
+              res_phone[j] = res_phone[j].replace(/\d{1,2}:\d{2}:\d{2}/i, "");
               var phone = res_phone[j].replace( /\D/ig, "");
               
-              if (!RecordToReport(ReportUrl, url, date, time, name, phone, type, duration, source, email, note, "", rep_sheet, script_vers, PhoneNorm, land))
+              if (!RecordToReport(ReportUrl, url, date, time, name, phone, type, duration, source, email, note, "", rep_sheet, "", PhoneNorm, land))
               {
                 return false;
               }
@@ -1215,21 +1217,7 @@ function main()
             }
           }
         }
-        // заносим результаты в лог
-        var msg = source1 + "/" + t + "зв.";
-        //RecordToLog(msg);
-        RecordToLog2(msg, TagMail, "звонок", period, url, script_vers);
-      } else
-      {
-        // заносим результаты в лог
-        var msg = source1 + "/" + 0 + "зв.";
-        RecordToLog2(msg, TagMail, "звонок", period, url, script_vers);
       }
-    } else
-    {
-      msg = source1 + "/" + "номер не найден в базе проектов скрипта";
-      RecordToLog2(msg, "-", "звонок", period, url, script_vers); 
-      return false;
     }
     return true;
   } 
