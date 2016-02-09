@@ -1,86 +1,86 @@
-//лог - https://docs.google.com/spreadsheets/d/1GUJLIkXyJ8vcCCJQhza5Jl0EHUUtlMFQHs3xIA4ya_s/edit
+п»ї//Р»РѕРі - https://docs.google.com/spreadsheets/d/1GUJLIkXyJ8vcCCJQhza5Jl0EHUUtlMFQHs3xIA4ya_s/edit
 function main()
 {
-  // версия скрипта - дата + номер изменения уникальный в течение дня
+  // РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р° - РґР°С‚Р° + РЅРѕРјРµСЂ РёР·РјРµРЅРµРЅРёСЏ СѓРЅРёРєР°Р»СЊРЅС‹Р№ РІ С‚РµС‡РµРЅРёРµ РґРЅСЏ
   var script_vers="'03082015_v2";
   
-  // настройки 0 - вкл/выкл отчет по заявкам, 1 - вкл/выкл отчет по звонкам, 2 - урл отчета, 3- тег в почте, 4 - парсер_почты, 
-  // 5 - номер на Яндекс, 6 - номер на гугл, 7 - количество цепочек на проверку, 8 - мин.длительность звонка (сек./ до 60 сек.), 9 - лист с отчетом Лиды, 10 - нормировщик номеров, 11 - лендинг
+  // РЅР°СЃС‚СЂРѕР№РєРё 0 - РІРєР»/РІС‹РєР» РѕС‚С‡РµС‚ РїРѕ Р·Р°СЏРІРєР°Рј, 1 - РІРєР»/РІС‹РєР» РѕС‚С‡РµС‚ РїРѕ Р·РІРѕРЅРєР°Рј, 2 - СѓСЂР» РѕС‚С‡РµС‚Р°, 3- С‚РµРі РІ РїРѕС‡С‚Рµ, 4 - РїР°СЂСЃРµСЂ_РїРѕС‡С‚С‹, 
+  // 5 - РЅРѕРјРµСЂ РЅР° РЇРЅРґРµРєСЃ, 6 - РЅРѕРјРµСЂ РЅР° РіСѓРіР», 7 - РєРѕР»РёС‡РµСЃС‚РІРѕ С†РµРїРѕС‡РµРє РЅР° РїСЂРѕРІРµСЂРєСѓ, 8 - РјРёРЅ.РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р·РІРѕРЅРєР° (СЃРµРє./ РґРѕ 60 СЃРµРє.), 9 - Р»РёСЃС‚ СЃ РѕС‚С‡РµС‚РѕРј Р›РёРґС‹, 10 - РЅРѕСЂРјРёСЂРѕРІС‰РёРє РЅРѕРјРµСЂРѕРІ, 11 - Р»РµРЅРґРёРЅРі
   var projects = [];
-  // окнамастер *
-  projects[0] = [0, 1, 'https://docs.google.com/spreadsheets/d/1uJ0gkBcp7qi5t6JfRI7ubzlQYoCRwHZfU3d-pMBd0Ug/edit',"Лиды/окнамастер", mailparser2, "375297044455", "375297030305", 2, 15, "LEADS", PhoneNormRB, ""];
-  // модерн хаус *
-  projects[1] = [0, 1, 'https://docs.google.com/a/artox-media.by/spreadsheets/d/1SZAbx6Rj0RixIAL-GEn3_xFiLGVlnycDVIdhY3RL3DY/edit',"Лиды/shkaf-kupe.for-all.by", mailparser1, "375297363635", "375297060676", 3, 15, "LEADS", PhoneNormRB, "land1"]; //
-  // ИП Шарко
-  projects[2] = [0, 0, 'https://docs.google.com/spreadsheets/d/1cnha9CHl82M15dUnpGuyBn7lyCUonFIYNPTftMFTPOc/edit',"Лиды/ИП Шарко", "", "375297094242", "375297090602", 2, 15, "LEADS", PhoneNormRB, ""];
-  // ГЛС Мебель *
-  projects[3] = [0, 1, 'https://docs.google.com/spreadsheets/d/1kWwKVS_PaphldxRFAc45LyGXIpmPA1QMlFSPbBZkCX0/edit',"Лиды/mebelgls", mailparser6, "375297488834", "375297497649", 2, 15, "LEADS", PhoneNormRB, ""];
-  // Шик-авто Рио
-  projects[4] = [0, 0, 'https://docs.google.com/spreadsheets/d/1zKxNqABPvoQW1K-VoeHzQlkEEydpkuYHb1oOxt93lYE/edit',"Лиды/Шик-авто-рио", mailparser4, "375297448882", "375297755664", 2, 15, "LEADS", PhoneNormRB, ""];
-  // Шик-авто РФ
-  projects[5] = [0, 0, 'https://docs.google.com/spreadsheets/d/1V5voZtScyZBRPetMzQPcJTevposv8YcEYI9eRzZkhPA/edit',"Лиды/Шик-авто-рф", mailparser3, "375298204317", "375298205975", 2, 15, "LEADS", PhoneNormRB, ""];
-  // Шик-авто Рио (ЯЛ)
-  projects[6] = [0, 0, 'https://docs.google.com/spreadsheets/d/1zKxNqABPvoQW1K-VoeHzQlkEEydpkuYHb1oOxt93lYE/edit',"Лиды/Шик-авто-рио-ЯЛ", mailparser5, "375297552515", "", 2, 15, "LEADS2", PhoneNormRB, ""];
-  // Консалт-эксперт sro123.info mailparser7
-  projects[7] = [1, 0, 'https://docs.google.com/spreadsheets/d/18G9Q-YYYFh4I_kxwgN0M8FCAXZmBPb3bn6tCCabRn0M/edit',"Лиды/sro123.info", mailparser14, "", "", 3, 15, "LEADS", PhoneNormRF, "land1"];
+  // РѕРєРЅР°РјР°СЃС‚РµСЂ *
+  projects[0] = [0, 1, 'https://docs.google.com/spreadsheets/d/1uJ0gkBcp7qi5t6JfRI7ubzlQYoCRwHZfU3d-pMBd0Ug/edit',"Р›РёРґС‹/РѕРєРЅР°РјР°СЃС‚РµСЂ", mailparser2, "375297044455", "375297030305", 2, 15, "LEADS", PhoneNormRB, ""];
+  // РјРѕРґРµСЂРЅ С…Р°СѓСЃ *
+  projects[1] = [0, 1, 'https://docs.google.com/a/artox-media.by/spreadsheets/d/1SZAbx6Rj0RixIAL-GEn3_xFiLGVlnycDVIdhY3RL3DY/edit',"Р›РёРґС‹/shkaf-kupe.for-all.by", mailparser1, "375297363635", "375297060676", 3, 15, "LEADS", PhoneNormRB, "land1"]; //
+  // РРџ РЁР°СЂРєРѕ
+  projects[2] = [0, 0, 'https://docs.google.com/spreadsheets/d/1cnha9CHl82M15dUnpGuyBn7lyCUonFIYNPTftMFTPOc/edit',"Р›РёРґС‹/РРџ РЁР°СЂРєРѕ", "", "375297094242", "375297090602", 2, 15, "LEADS", PhoneNormRB, ""];
+  // Р“Р›РЎ РњРµР±РµР»СЊ *
+  projects[3] = [0, 1, 'https://docs.google.com/spreadsheets/d/1kWwKVS_PaphldxRFAc45LyGXIpmPA1QMlFSPbBZkCX0/edit',"Р›РёРґС‹/mebelgls", mailparser6, "375297488834", "375297497649", 2, 15, "LEADS", PhoneNormRB, ""];
+  // РЁРёРє-Р°РІС‚Рѕ Р РёРѕ
+  projects[4] = [0, 0, 'https://docs.google.com/spreadsheets/d/1zKxNqABPvoQW1K-VoeHzQlkEEydpkuYHb1oOxt93lYE/edit',"Р›РёРґС‹/РЁРёРє-Р°РІС‚Рѕ-СЂРёРѕ", mailparser4, "375297448882", "375297755664", 2, 15, "LEADS", PhoneNormRB, ""];
+  // РЁРёРє-Р°РІС‚Рѕ Р Р¤
+  projects[5] = [0, 0, 'https://docs.google.com/spreadsheets/d/1V5voZtScyZBRPetMzQPcJTevposv8YcEYI9eRzZkhPA/edit',"Р›РёРґС‹/РЁРёРє-Р°РІС‚Рѕ-СЂС„", mailparser3, "375298204317", "375298205975", 2, 15, "LEADS", PhoneNormRB, ""];
+  // РЁРёРє-Р°РІС‚Рѕ Р РёРѕ (РЇР›)
+  projects[6] = [0, 0, 'https://docs.google.com/spreadsheets/d/1zKxNqABPvoQW1K-VoeHzQlkEEydpkuYHb1oOxt93lYE/edit',"Р›РёРґС‹/РЁРёРє-Р°РІС‚Рѕ-СЂРёРѕ-РЇР›", mailparser5, "375297552515", "", 2, 15, "LEADS2", PhoneNormRB, ""];
+  // РљРѕРЅСЃР°Р»С‚-СЌРєСЃРїРµСЂС‚ sro123.info mailparser7
+  projects[7] = [1, 0, 'https://docs.google.com/spreadsheets/d/18G9Q-YYYFh4I_kxwgN0M8FCAXZmBPb3bn6tCCabRn0M/edit',"Р›РёРґС‹/sro123.info", mailparser14, "", "", 3, 15, "LEADS", PhoneNormRF, "land1"];
   // Iceagency btl-ice.ru *
-  projects[8] = [0, 0, 'https://docs.google.com/spreadsheets/d/1l5409SEDpdPTcNCv-TUtTaMagXqv3p2_0Yr-inEdxGI/edit',"Лиды/btl-ice.ru", mailparser8, "", "", 3, 15, "LEADS", PhoneNormRF, ""];
-  // Ветерок *
-  projects[9] = [0, 0, 'https://docs.google.com/spreadsheets/d/1XBzF4ssufNUc7q4E_41OP8XIamrnfdTOefhvpNw4cNo/edit',"Лиды/Veterok365", mailparser9, "", "", 3, 15, "LEADS", PhoneNormRF, ""];
-  // Шеф-кухни *
-  projects[10] = [0, 1, 'https://docs.google.com/spreadsheets/d/1F3HZqj-uT6jqglnfsqBltXn2bEVijN2J-UiZrI2PcDY/edit',"Лиды/Shef-kuhni", mailparser15, "375297448333", "375297453366", 3, 15, "LEADS", PhoneNormRB, ""];
-  // 24окна *
-  projects[11] = [0, 1, 'https://docs.google.com/spreadsheets/d/17lTPYBKTuMBH1PLsV6zkGzq5oFhzTviZW94vz8Mikl8/edit',"Лиды/24okna", mailparser11, "375298206524", "", 3, 15, "LEADS", PhoneNormRB, ""];
-  // Alfa-credit.by (без номеров, только заявки) *
-  projects[12] = [0, 0, 'https://docs.google.com/spreadsheets/d/1EUrOu6b981ct5lsNGtmRO2NBv0bDAW-8RapRrMAhoio/edit',"Лиды/Alfa-credit.by", mailparser12, "", "", 10, 15, "LEADS", PhoneNormRB, ""]; 
+  projects[8] = [0, 0, 'https://docs.google.com/spreadsheets/d/1l5409SEDpdPTcNCv-TUtTaMagXqv3p2_0Yr-inEdxGI/edit',"Р›РёРґС‹/btl-ice.ru", mailparser8, "", "", 3, 15, "LEADS", PhoneNormRF, ""];
+  // Р’РµС‚РµСЂРѕРє *
+  projects[9] = [0, 0, 'https://docs.google.com/spreadsheets/d/1XBzF4ssufNUc7q4E_41OP8XIamrnfdTOefhvpNw4cNo/edit',"Р›РёРґС‹/Veterok365", mailparser9, "", "", 3, 15, "LEADS", PhoneNormRF, ""];
+  // РЁРµС„-РєСѓС…РЅРё *
+  projects[10] = [0, 1, 'https://docs.google.com/spreadsheets/d/1F3HZqj-uT6jqglnfsqBltXn2bEVijN2J-UiZrI2PcDY/edit',"Р›РёРґС‹/Shef-kuhni", mailparser15, "375297448333", "375297453366", 3, 15, "LEADS", PhoneNormRB, ""];
+  // 24РѕРєРЅР° *
+  projects[11] = [0, 1, 'https://docs.google.com/spreadsheets/d/17lTPYBKTuMBH1PLsV6zkGzq5oFhzTviZW94vz8Mikl8/edit',"Р›РёРґС‹/24okna", mailparser11, "375298206524", "", 3, 15, "LEADS", PhoneNormRB, ""];
+  // Alfa-credit.by (Р±РµР· РЅРѕРјРµСЂРѕРІ, С‚РѕР»СЊРєРѕ Р·Р°СЏРІРєРё) *
+  projects[12] = [0, 0, 'https://docs.google.com/spreadsheets/d/1EUrOu6b981ct5lsNGtmRO2NBv0bDAW-8RapRrMAhoio/edit',"Р›РёРґС‹/Alfa-credit.by", mailparser12, "", "", 10, 15, "LEADS", PhoneNormRB, ""]; 
   // Artox-lid.by *
-  projects[13] = [0, 1, 'https://docs.google.com/spreadsheets/d/1qM2q8iloucUTqNy92TpLQa2BEl_645SKePip1yaGSB4/edit',"Лиды/ARTOX-lid", mailparser13, "375297029595", "", 3, 15, "LEADS", PhoneNormRB, ""];
-  // модерн хаус 2 shkafy-vygodno.by *
-  projects[14] = [0, 1, 'https://docs.google.com/a/artox-media.by/spreadsheets/d/1SZAbx6Rj0RixIAL-GEn3_xFiLGVlnycDVIdhY3RL3DY/edit',"Лиды/shkafy-vygodno.by", mailparser16, "375298206541", "375297049595", 3, 15, "LEADS", PhoneNormRB, "land2"]; //
-   // Консалт-эксперт 12sro.ru 
-  projects[15] = [1, 0, 'https://docs.google.com/spreadsheets/d/18G9Q-YYYFh4I_kxwgN0M8FCAXZmBPb3bn6tCCabRn0M/edit',"Лиды/12sro.ru", mailparser17, "", "", 3, 15, "LEADS", PhoneNormRF, "land2"];
+  projects[13] = [0, 1, 'https://docs.google.com/spreadsheets/d/1qM2q8iloucUTqNy92TpLQa2BEl_645SKePip1yaGSB4/edit',"Р›РёРґС‹/ARTOX-lid", mailparser13, "375297029595", "", 3, 15, "LEADS", PhoneNormRB, ""];
+  // РјРѕРґРµСЂРЅ С…Р°СѓСЃ 2 shkafy-vygodno.by *
+  projects[14] = [0, 1, 'https://docs.google.com/a/artox-media.by/spreadsheets/d/1SZAbx6Rj0RixIAL-GEn3_xFiLGVlnycDVIdhY3RL3DY/edit',"Р›РёРґС‹/shkafy-vygodno.by", mailparser16, "375298206541", "375297049595", 3, 15, "LEADS", PhoneNormRB, "land2"]; //
+   // РљРѕРЅСЃР°Р»С‚-СЌРєСЃРїРµСЂС‚ 12sro.ru 
+  projects[15] = [1, 0, 'https://docs.google.com/spreadsheets/d/18G9Q-YYYFh4I_kxwgN0M8FCAXZmBPb3bn6tCCabRn0M/edit',"Р›РёРґС‹/12sro.ru", mailparser17, "", "", 3, 15, "LEADS", PhoneNormRF, "land2"];
 
   
   
   
-  // выключатель отчета по звонкам
-  var ring_rprt = 1;  // 1-вкл., 0-выкл.
+  // РІС‹РєР»СЋС‡Р°С‚РµР»СЊ РѕС‚С‡РµС‚Р° РїРѕ Р·РІРѕРЅРєР°Рј
+  var ring_rprt = 1;  // 1-РІРєР»., 0-РІС‹РєР».
   
-  // объявление глобальных переменных
+  // РѕР±СЉСЏРІР»РµРЅРёРµ РіР»РѕР±Р°Р»СЊРЅС‹С… РїРµСЂРµРјРµРЅРЅС‹С…
   var url, name, phone, date2, time2, email, source, utm_source, utm_medium, utm_campaign, utm_content, utm_term, type, source2, note, duration;
-  // параметры проекта
+  // РїР°СЂР°РјРµС‚СЂС‹ РїСЂРѕРµРєС‚Р°
   var ReportUrl, TagMail, ParserMail, PhoneY, PhoneG, MessCount, LeadDur, rep_sheet, PhoneNorm, land;
-  // вспомогательные переменные
+  // РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ
   var myArray, MsgBody, MsgSubj, reg, date1, day1, month1, year1, hour, min, attachments;
   
   
-  // отчеты по звонкам
+  // РѕС‚С‡РµС‚С‹ РїРѕ Р·РІРѕРЅРєР°Рј
   if (ring_rprt==1)
   {
-    // Выбираем папку с лидами проекта
-    var label = GmailApp.getUserLabelByName("Лиды/Calls");
+    // Р’С‹Р±РёСЂР°РµРј РїР°РїРєСѓ СЃ Р»РёРґР°РјРё РїСЂРѕРµРєС‚Р°
+    var label = GmailApp.getUserLabelByName("Р›РёРґС‹/Calls");
     var threads = label.getThreads(0, 1);
-    // перебираем цепочки
+    // РїРµСЂРµР±РёСЂР°РµРј С†РµРїРѕС‡РєРё
     for (var i = 0; i < threads.length; i++) 
     {  
-      // перебираем сообщения из цепочки
+      // РїРµСЂРµР±РёСЂР°РµРј СЃРѕРѕР±С‰РµРЅРёСЏ РёР· С†РµРїРѕС‡РєРё
       var messages = threads[i].getMessages();
-      // для каждого сообщения из цепочки
+      // РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ РёР· С†РµРїРѕС‡РєРё
       var temp = messages.length;
       for (var j = 0; j < messages.length; j++)
-        //ищем непрочитанные сообщения
+        //РёС‰РµРј РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ
       {
         if (messages[j].isUnread()==true) 
         {
-          // получаем тему и текст письма (в ХТМЛ)
+          // РїРѕР»СѓС‡Р°РµРј С‚РµРјСѓ Рё С‚РµРєСЃС‚ РїРёСЃСЊРјР° (РІ РҐРўРњР›)
           MsgBody=messages[j].getBody();
           MsgSubj=messages[j].getSubject();
-          // парсим звонки и вносим в отчет
+          // РїР°СЂСЃРёРј Р·РІРѕРЅРєРё Рё РІРЅРѕСЃРёРј РІ РѕС‚С‡РµС‚
           attachments = messages[j].getAttachments()[0].getDataAsString(); 
           url = "=HYPERLINK(\"https://mail-attachment.googleusercontent.com/attachment/u/0/?ui=2&ik=1d1f9fd3fc&view=att&th=" + messages[j].getId() + "&attid=0.1&disp=inline&safe=1&zw&saduie=AG9B_P8KPjpv5lNlF60qvT0uutzU" + "\",\"url\")";
           
           mailparser_mts_RecordToReport(attachments);          
-          // маркируем сообщение как непрочитанное (чтобы в следующий раз его не открывать)
+          // РјР°СЂРєРёСЂСѓРµРј СЃРѕРѕР±С‰РµРЅРёРµ РєР°Рє РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅРѕРµ (С‡С‚РѕР±С‹ РІ СЃР»РµРґСѓСЋС‰РёР№ СЂР°Р· РµРіРѕ РЅРµ РѕС‚РєСЂС‹РІР°С‚СЊ)
           messages[j].markRead();
           
         }
@@ -89,15 +89,15 @@ function main()
   }
   
   
-  // Выбираем папку с лидами проекта
+  // Р’С‹Р±РёСЂР°РµРј РїР°РїРєСѓ СЃ Р»РёРґР°РјРё РїСЂРѕРµРєС‚Р°
   
-  //перебираем проекты
+  //РїРµСЂРµР±РёСЂР°РµРј РїСЂРѕРµРєС‚С‹
   for (var i = 0; i < projects.length; i++) 
   {
-    // обрабатываем проекты, в которых в настройках включен парсинг почты
+    // РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РїСЂРѕРµРєС‚С‹, РІ РєРѕС‚РѕСЂС‹С… РІ РЅР°СЃС‚СЂРѕР№РєР°С… РІРєР»СЋС‡РµРЅ РїР°СЂСЃРёРЅРі РїРѕС‡С‚С‹
     if (projects[i][0]==1)
     {
-      // записываем в переменные параметры проекта
+      // Р·Р°РїРёСЃС‹РІР°РµРј РІ РїРµСЂРµРјРµРЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РїСЂРѕРµРєС‚Р°
       ReportUrl=projects[i][2]; 
       TagMail=projects[i][3];
       ParserMail=projects[i][4];
@@ -112,27 +112,27 @@ function main()
       var threads = label.getThreads(0, MessCount);
       for (var k = 0; k < threads.length; k++) 
       {  
-        // берем все сообщения из цепочки
+        // Р±РµСЂРµРј РІСЃРµ СЃРѕРѕР±С‰РµРЅРёСЏ РёР· С†РµРїРѕС‡РєРё
         var messages = threads[k].getMessages();
-        // для каждого сообщения из цепочки
+        // РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ РёР· С†РµРїРѕС‡РєРё
         for (var j = 0; j < messages.length; j++)
-          //ищем непрочитанные сообщения
+          //РёС‰РµРј РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ
         {
           if (messages[j].isUnread()==true) 
           {
-            // получаем тему и текст письма (в ХТМЛ)
+            // РїРѕР»СѓС‡Р°РµРј С‚РµРјСѓ Рё С‚РµРєСЃС‚ РїРёСЃСЊРјР° (РІ РҐРўРњР›)
             MsgBody=messages[j].getBody();
             MsgSubj=messages[j].getSubject();
-            // маркируем сообщение прочитанным (чтобы в следующий раз его не открывать)
+            // РјР°СЂРєРёСЂСѓРµРј СЃРѕРѕР±С‰РµРЅРёРµ РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рј (С‡С‚РѕР±С‹ РІ СЃР»РµРґСѓСЋС‰РёР№ СЂР°Р· РµРіРѕ РЅРµ РѕС‚РєСЂС‹РІР°С‚СЊ)
             
             date1=messages[j].getDate();
             ParserMail(MsgBody,date1,MsgSubj);
             url = "=HYPERLINK(\"https://mail.google.com/mail/u/0/?ui=2&ik=1d1f9fd3fc&view=om&th=" + messages[j].getId() + "\",\"url\")";
             if (phone=="")
             {
-              msg = "НЕ распарсилась (либо пустой номер) заявка с темой " + MsgSubj + " от " + date1;
+              msg = "РќР• СЂР°СЃРїР°СЂСЃРёР»Р°СЃСЊ (Р»РёР±Рѕ РїСѓСЃС‚РѕР№ РЅРѕРјРµСЂ) Р·Р°СЏРІРєР° СЃ С‚РµРјРѕР№ " + MsgSubj + " РѕС‚ " + date1;
               //RecordToLog(msg);
-              RecordToLog2(msg, TagMail, "Заявка", date1, url, script_vers);
+              RecordToLog2(msg, TagMail, "Р—Р°СЏРІРєР°", date1, url, script_vers);
               messages[j].markRead();
             }
             else
@@ -142,9 +142,9 @@ function main()
               {
                 messages[j].markRead();
               }
-              msg = "Распарсилась успешно Заявка ID: " + messages[j].getId() + " от " + date1;
+              msg = "Р Р°СЃРїР°СЂСЃРёР»Р°СЃСЊ СѓСЃРїРµС€РЅРѕ Р—Р°СЏРІРєР° ID: " + messages[j].getId() + " РѕС‚ " + date1;
               //RecordToLog(msg);
-              RecordToLog2(msg, TagMail, "Заявка", date1, url, script_vers);
+              RecordToLog2(msg, TagMail, "Р—Р°СЏРІРєР°", date1, url, script_vers);
             }
           }
         }
@@ -157,28 +157,28 @@ function main()
   
   function mailparser1(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп shkaf-kupe.for-all.by
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї shkaf-kupe.for-all.by
     var reg 
-    if (MsgBody.match(/Имя: (.*)?</i)!=null)
+    if (MsgBody.match(/РРјСЏ: (.*)?</i)!=null)
     {
-      reg = MsgBody.match(/Имя: (.*)?</i)[0]
-      reg = reg.replace( /Имя: /i, "");
+      reg = MsgBody.match(/РРјСЏ: (.*)?</i)[0]
+      reg = reg.replace( /РРјСЏ: /i, "");
       name = reg.replace( /</i, "");
     } else  {name = "-";}
-    if (MsgBody.match(/Телефон(.*)?</i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?</i)!=null)
     {
-      reg = MsgBody.match(/Телефон(.*)?</i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?</i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /</i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     note=""; 
     email="";
     duration = "";
@@ -186,12 +186,12 @@ function main()
   
   function mailparser2(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп oknamaster.by
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї oknamaster.by
     var reg 
-    if (MsgBody.match(/Имя: (.*)?\n/i)!=null)
+    if (MsgBody.match(/РРјСЏ: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Имя: (.*)?\n/i)[0]
-      reg = reg.replace( /Имя: /i, "");
+      reg = MsgBody.match(/РРјСЏ: (.*)?\n/i)[0]
+      reg = reg.replace( /РРјСЏ: /i, "");
       name = reg.replace( /\n/i, "");
     } else  {name = "-";}
     if (MsgBody.match(/E-mail: (.*)?\n/i)!=null)
@@ -200,10 +200,10 @@ function main()
       reg = reg.replace( /E-mail: /i, "");
       email = reg.replace( /\n/i, "");
     } else  {email = "-";}
-    if (MsgBody.match(/Заказ: (.*)?\n/i)!=null)
+    if (MsgBody.match(/Р—Р°РєР°Р·: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Заказ: (.*)?\n/i)[0]
-      reg = reg.replace( /Заказ: /i, "");
+      reg = MsgBody.match(/Р—Р°РєР°Р·: (.*)?\n/i)[0]
+      reg = reg.replace( /Р—Р°РєР°Р·: /i, "");
       note = reg.replace( /\n/i, "");
     } else  {note = "-";}
     source="";
@@ -223,20 +223,20 @@ function main()
       reg = reg.replace( /\n/i, "");
       source2 = source2 + reg.replace( /<wbr>/i, "");
     }  
-    if (MsgBody.match(/Телефон: (.*)?\n/i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Телефон: (.*)?\n/i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ: (.*)?\n/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     email="";
     duration = "";
@@ -244,12 +244,12 @@ function main()
   
   function mailparser3(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп Шик-авто РФ
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї РЁРёРє-Р°РІС‚Рѕ Р Р¤
     var reg 
-    if (MsgBody.match(/От: (.*)?(<br>|\n)/i)!=null)
+    if (MsgBody.match(/РћС‚: (.*)?(<br>|\n)/i)!=null)
     {
-      reg = MsgBody.match(/От: (.*)?(<br>|\n)/i)[0]
-      reg = reg.replace( /От: /i, "");
+      reg = MsgBody.match(/РћС‚: (.*)?(<br>|\n)/i)[0]
+      reg = reg.replace( /РћС‚: /i, "");
       name = reg.replace( /(<br>|\n)/ig, "");
     } else  {name = "-";}
     /*if (MsgBody.match(/E-mail: (.*)?\n/i)!=null)
@@ -258,27 +258,27 @@ function main()
     reg = reg.replace( /E-mail: /i, "");
     email = reg.replace( /\n/i, "");
     } else  {email = "-";}*/
-    if (MsgBody.match(/Тема: (.*)?(<br>|\n)/i)!=null)
+    if (MsgBody.match(/РўРµРјР°: (.*)?(<br>|\n)/i)!=null)
     {
-      reg = MsgBody.match(/Тема: (.*)?(<br>|\n)/i)[0]
-      reg = reg.replace( /Тема: /i, "");
+      reg = MsgBody.match(/РўРµРјР°: (.*)?(<br>|\n)/i)[0]
+      reg = reg.replace( /РўРµРјР°: /i, "");
       note = reg.replace( /(<br>|\n)/ig, "");
     } else  {note = "-";}
     
-    if (MsgBody.match(/Телефон: (.*)?\n/i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Телефон: (.*)?\n/i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ: (.*)?\n/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     email="";
     duration = "";
@@ -286,12 +286,12 @@ function main()
   
   function mailparser4(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп Шик-авто Рио
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї РЁРёРє-Р°РІС‚Рѕ Р РёРѕ
     var reg 
-    if (MsgBody.match(/От: (.*)?(<br>|\n)/i)!=null)
+    if (MsgBody.match(/РћС‚: (.*)?(<br>|\n)/i)!=null)
     {
-      reg = MsgBody.match(/От: (.*)?(<br>|\n)/i)[0]
-      reg = reg.replace( /От: /i, "");
+      reg = MsgBody.match(/РћС‚: (.*)?(<br>|\n)/i)[0]
+      reg = reg.replace( /РћС‚: /i, "");
       name = reg.replace( /(<br>|\n)/ig, "");
     } else  {name = "-";}
     /*if (MsgBody.match(/E-mail: (.*)?\n/i)!=null)
@@ -307,20 +307,20 @@ function main()
       email = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {email = "";}
     
-    if (MsgBody.match(/Контактный телефон: (.*)?\n/i)!=null)
+    if (MsgBody.match(/РљРѕРЅС‚Р°РєС‚РЅС‹Р№ С‚РµР»РµС„РѕРЅ: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Контактный телефон: (.*)?\n/i)[0]
+      reg = MsgBody.match(/РљРѕРЅС‚Р°РєС‚РЅС‹Р№ С‚РµР»РµС„РѕРЅ: (.*)?\n/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     //utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     source2="";
     source="";
     note="";
@@ -330,7 +330,7 @@ function main()
   
   function mailparser5(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп Шик-авто Рио-ЯЛ
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї РЁРёРє-Р°РІС‚Рѕ Р РёРѕ-РЇР›
     var reg 
     if (MsgBody.match(/IP Address : (.*)?\n(.*)?\n/ig)!=null)
     {
@@ -358,13 +358,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     //utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     source2="";
     source="";
     name="-";
@@ -373,7 +373,7 @@ function main()
   
   function mailparser6(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп МебельГЛС
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї РњРµР±РµР»СЊР“Р›РЎ
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -404,13 +404,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     name="-";
@@ -419,13 +419,13 @@ function main()
   
   function mailparser7(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп sro123.info
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї sro123.info
     var reg 
     MsgBody = MsgBody.replace( /<.*?>/ig, "");
-    if (MsgBody.match(/Новая заявка от .*/i)!=null)
+    if (MsgBody.match(/РќРѕРІР°СЏ Р·Р°СЏРІРєР° РѕС‚ .*/i)!=null)
     {
-      reg = MsgBody.match(/Новая заявка от .*/i)[0]
-      name = reg.replace( /Новая заявка от /i, "");
+      reg = MsgBody.match(/РќРѕРІР°СЏ Р·Р°СЏРІРєР° РѕС‚ .*/i)[0]
+      name = reg.replace( /РќРѕРІР°СЏ Р·Р°СЏРІРєР° РѕС‚ /i, "");
     } else  {name = "-";}
     if (MsgBody.match(/E-mail : (.*)?(<br>|\n)/i)!=null)
     {
@@ -434,20 +434,20 @@ function main()
       email = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {email = "";}
     
-    if (MsgBody.match(/Телефон:(\n)?.*?\n/i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ:(\n)?.*?\n/i)!=null)
     {
-      reg = MsgBody.match(/Телефон:(\n)?.*?\n/i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ:(\n)?.*?\n/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     //utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     source2="";
     source="";
     note="";
@@ -456,30 +456,30 @@ function main()
   
   function mailparser8(MsgBody, date1 ,MsgSubj) 
   {
-    // используется для лп btl-ice.ru
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї btl-ice.ru
     var reg 
-    if (MsgBody.match(/Имя: (.*)?</i)!=null)
+    if (MsgBody.match(/РРјСЏ: (.*)?</i)!=null)
     {
-      reg = MsgBody.match(/Имя: (.*)?</i)[0]
-      reg = reg.replace( /Имя: /i, "");
+      reg = MsgBody.match(/РРјСЏ: (.*)?</i)[0]
+      reg = reg.replace( /РРјСЏ: /i, "");
       name = reg.replace( /</i, "");
     } else  {name = "-";}
-    if (MsgBody.match(/Телефон(.*)?</i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?</i)!=null)
     {
-      reg = MsgBody.match(/Телефон(.*)?</i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?</i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /</i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     reg = MsgBody.replace(/(<.*?>|\n)/ig, " ");
-    if (reg.match(/Дополнительная информация:.*?Это сообщение/ig)!=null)
+    if (reg.match(/Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ:.*?Р­С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ/ig)!=null)
     {
-      reg = reg.match(/Дополнительная информация:.*?Это сообщение/ig)[0]
-      reg = reg.replace( /Дополнительная информация:/i, "");
-      reg = reg.replace( /Это сообщение/i, "");
+      reg = reg.match(/Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ:.*?Р­С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ/ig)[0]
+      reg = reg.replace( /Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ:/i, "");
+      reg = reg.replace( /Р­С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ/i, "");
       reg = reg.replace( /--/i, "");
       reg = reg.replace( /^( )*/i, "");
       note = MsgSubj + ': ' + reg.replace( /( )*$/i, "");
@@ -490,14 +490,14 @@ function main()
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка"; 
+    type="Р—Р°СЏРІРєР°"; 
     email="";
     duration = "";
   }
   
   function mailparser9(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп Ветерок
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї Р’РµС‚РµСЂРѕРє
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -507,13 +507,13 @@ function main()
       reg = reg.replace( /Form : /ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail : (.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /\n/ig, " ");
       reg = reg.replace( /^( )*/ig, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /^( |\t)+/ig, "");
@@ -547,41 +547,41 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
   }
   
   function mailparser10(MsgBody, date1, MsgSubj) 
-  { // для Шеф-кухни
+  { // РґР»СЏ РЁРµС„-РєСѓС…РЅРё
     var reg 
-    if (MsgBody.match(/От: (.*)?\n/i)!=null)
+    if (MsgBody.match(/РћС‚: (.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/От: (.*)?\n/i)[0]
-      reg = reg.replace( /От: /i, "");
+      reg = MsgBody.match(/РћС‚: (.*)?\n/i)[0]
+      reg = reg.replace( /РћС‚: /i, "");
       name = reg.replace( /(\n|<.*?>)/ig, "");
     } else  {name = "-";}
-    if (MsgBody.match(/Телефон(.*)?\n/i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?\n/i)!=null)
     {
-      reg = MsgBody.match(/Телефон(.*)?\n/i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ(.*)?\n/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     note=MsgSubj; 
     email="";
     duration = "";
@@ -589,7 +589,7 @@ function main()
   
   function mailparser11(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп 24окна
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї 24РѕРєРЅР°
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -599,14 +599,14 @@ function main()
       reg = reg.replace( /Form : /ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail : (.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /(Url Utm :(.*)?\n|Url Utm :)/ig, ""); 
       reg = reg.replace( /\n/ig, " ");
       reg = reg.replace( /^( )*/ig, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -639,7 +639,7 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
@@ -647,14 +647,14 @@ function main()
     utm_parser(MsgBody);
     //source2="";
     //source="";
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     duration = "";
     
   }
   
   function mailparser12(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп Alfa-credit.by
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї Alfa-credit.by
     var reg 
     var name1, name2;
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
@@ -666,13 +666,13 @@ function main()
       reg = reg.replace( /Surname : (.*)?\n/ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail : (.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /(Url Utm :(.*)?\n|Url Utm :)/ig, ""); 
       reg = reg.replace( /\n/ig, " ");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -685,7 +685,7 @@ function main()
       reg = reg.replace( /<.*?>/ig, "");
       duration = reg.replace( /\n/i, "");
     } else  {duration = "";}
-    // в поле e-mail вноситя ip-адрес
+    // РІ РїРѕР»Рµ e-mail РІРЅРѕСЃРёС‚СЏ ip-Р°РґСЂРµСЃ
     if (MsgBody.match(/IP Address :(.*)?(<br>|\n)/i)!=null)
     {
       reg = MsgBody.match(/IP Address :(.*)?(<br>|\n)/i)[0]
@@ -715,13 +715,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     //duration = "";
@@ -729,7 +729,7 @@ function main()
   
   function mailparser13(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп ARTOX-lid
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї ARTOX-lid
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -739,8 +739,8 @@ function main()
       reg = reg.replace( /Form : /ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail(.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /(Url Utm :(.*)?\n|Url Utm :)/ig, ""); 
@@ -776,13 +776,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
@@ -790,21 +790,21 @@ function main()
   
   function mailparser14(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп SRO-DOPUSK-24.RU
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї SRO-DOPUSK-24.RU
     var reg 
-    if (MsgBody.match(/Лид: ((.*)?\n)+/ig)!=null)
+    if (MsgBody.match(/Р›РёРґ: ((.*)?\n)+/ig)!=null)
     {
-      reg = MsgBody.match(/Лид: ((.*)?\n)+/ig)[0]
-      note = MsgSubj.replace( /(Лид sro-dopusk-24.ru - )/i, "");
-      reg = reg.replace( /(Лид: )(.*?)\n/i, "");
-      reg = reg.replace( /Телефон : (.*)?\n/ig, "");
-      reg = reg.replace( /Имя : (.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = MsgBody.match(/Р›РёРґ: ((.*)?\n)+/ig)[0]
+      note = MsgSubj.replace( /(Р›РёРґ sro-dopusk-24.ru - )/i, "");
+      reg = reg.replace( /(Р›РёРґ: )(.*?)\n/i, "");
+      reg = reg.replace( /РўРµР»РµС„РѕРЅ : (.*)?\n/ig, "");
+      reg = reg.replace( /РРјСЏ : (.*)?\n/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url(2)? : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /\n/ig, " ");
       reg = reg.replace( /^( )*/ig, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -823,27 +823,27 @@ function main()
       email = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {email = "";}
     
-    if (MsgBody.match(/Имя : (.*)?(<br>|\n)/i)!=null)
+    if (MsgBody.match(/РРјСЏ : (.*)?(<br>|\n)/i)!=null)
     {
-      reg = MsgBody.match(/Имя : (.*)?(<br>|\n)/i)[0]
-      reg = reg.replace( /Имя : /i, "");
+      reg = MsgBody.match(/РРјСЏ : (.*)?(<br>|\n)/i)[0]
+      reg = reg.replace( /РРјСЏ : /i, "");
       name = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {name = "";}
     
-    if (MsgBody.match(/Телефон :.*/i)!=null)
+    if (MsgBody.match(/РўРµР»РµС„РѕРЅ :.*/i)!=null)
     {
-      reg = MsgBody.match(/Телефон :.*/i)[0]
+      reg = MsgBody.match(/РўРµР»РµС„РѕРЅ :.*/i)[0]
       reg = reg.replace( /\D/ig, "");
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
@@ -851,7 +851,7 @@ function main()
   
   function mailparser15(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп geos-shefkuhni новый
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї geos-shefkuhni РЅРѕРІС‹Р№
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -861,14 +861,14 @@ function main()
       reg = reg.replace( /Form : /ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail(.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /(Url Utm :(.*)?\n|Url Utm :)/ig, ""); 
       reg = reg.replace( /\n/ig, " ");
       reg = reg.replace( /^( )*/ig, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -896,13 +896,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
@@ -910,12 +910,12 @@ function main()
   
   function mailparser16(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп shkafy-vygodno.by
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї shkafy-vygodno.by
     var reg 
     if (MsgSubj.match(/shkafyvygodno: .*/ig)!=null)
     {
       reg = MsgSubj.replace(/shkafyvygodno: /i, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -934,10 +934,10 @@ function main()
       email = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {email = "";}
     
-    if (MsgBody.match(/Имя : (.*)?(<br>|\n)/i)!=null)
+    if (MsgBody.match(/РРјСЏ : (.*)?(<br>|\n)/i)!=null)
     {
-      reg = MsgBody.match(/Имя : (.*)?(<br>|\n)/i)[0]
-      reg = reg.replace( /Имя : /i, "");
+      reg = MsgBody.match(/РРјСЏ : (.*)?(<br>|\n)/i)[0]
+      reg = reg.replace( /РРјСЏ : /i, "");
       name = reg.replace( /(<.*?>|\n)/ig, "");
     } else  {name = "";}
     
@@ -948,13 +948,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
@@ -962,7 +962,7 @@ function main()
   
     function mailparser17(MsgBody, date1, MsgSubj) 
   {
-    // используется для лп 12sro.ru 
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р»Рї 12sro.ru 
     var reg 
     if (MsgBody.match(/IP Address : ((.*)?\n)+/ig)!=null)
     {
@@ -973,14 +973,14 @@ function main()
       reg = reg.replace( /CallBack : /ig, "");
       reg = reg.replace( /Name : (.*)?\n/ig, "");
       reg = reg.replace( /E-mail(.*)?\n/ig, "");
-      reg = reg.replace( /(Источник : (.*)?\n|Источник :)/ig, "");
-      reg = reg.replace( /(Фраза : (.*)?\n|Фраза :)/ig, "");
+      reg = reg.replace( /(РСЃС‚РѕС‡РЅРёРє : (.*)?\n|РСЃС‚РѕС‡РЅРёРє :)/ig, "");
+      reg = reg.replace( /(Р¤СЂР°Р·Р° : (.*)?\n|Р¤СЂР°Р·Р° :)/ig, "");
       reg = reg.replace( /(Utm Url : (.*)?\n|Utm Url :)/ig, "");
       reg = reg.replace( /(Others : (.*)?\n|Others :)/ig, "");
       reg = reg.replace( /(Url Utm :(.*)?\n|Url Utm :)/ig, ""); 
       reg = reg.replace( /\n/ig, " ");
       reg = reg.replace( /^( )*/ig, "");
-      // для всех полей Note можно использовать
+      // РґР»СЏ РІСЃРµС… РїРѕР»РµР№ Note РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
       reg = reg.replace( /&nbsp;/ig, " ");
       reg = reg.replace( /( )+/ig, " ");
       reg = reg.replace( /$( )+/ig, "");
@@ -1009,13 +1009,13 @@ function main()
       phone = reg.replace( /\n/i, "");
     } else  
     {
-      // ключевое поле, если не удалось распарсить помечаем "" - это используем в дальнейшем
+      // РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РїРѕРјРµС‡Р°РµРј "" - СЌС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РІ РґР°Р»СЊРЅРµР№С€РµРј
       phone = "";
     }
     date2=DateNorm(date1);
     time2=TimeNorm(date1);
     utm_parser(MsgBody);
-    type="Заявка";
+    type="Р—Р°СЏРІРєР°";
     //source2="";
     //source="";
     duration = "";
@@ -1040,7 +1040,7 @@ function main()
     {
       var reg = MsgBody.match(/utm_source=(.*?)(&|$| |\n)/i)[0];
       reg = reg.replace( /utm_source=/i, "");
-      reg = reg.replace( /#.*/i, ""); // для случая yandex#geos3
+      reg = reg.replace( /#.*/i, ""); // РґР»СЏ СЃР»СѓС‡Р°СЏ yandex#geos3
       utm_source = reg.replace( /&/i, "");
     } else
     {
@@ -1100,7 +1100,7 @@ function main()
     {
       utm_term="";
     }
-    // на основании меток присваиваем источник 
+    // РЅР° РѕСЃРЅРѕРІР°РЅРёРё РјРµС‚РѕРє РїСЂРёСЃРІР°РёРІР°РµРј РёСЃС‚РѕС‡РЅРёРє 
     if(utm_campaign == "rsya")
     {
       source = "rsya";
@@ -1126,15 +1126,15 @@ function main()
   
   function mailparser_mts_RecordToReport(attachments) 
   {
-    // используется для парсинга звонков из кабинета мтс
-    // убрать первые дату и номера
-    var type="Звонок"; 
-    var period = attachments.match( /за период с \d{2}\.\d{2}\.\d{4}.*?по.*?\d{2}:\d{2}:\d{2}/i);
-    var attachments = attachments.replace( /за период с \d{2}\.\d{2}\.\d{4}.*?по.*?\d{2}:\d{2}:\d{2}/i, "");
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїР°СЂСЃРёРЅРіР° Р·РІРѕРЅРєРѕРІ РёР· РєР°Р±РёРЅРµС‚Р° РјС‚СЃ
+    // СѓР±СЂР°С‚СЊ РїРµСЂРІС‹Рµ РґР°С‚Сѓ Рё РЅРѕРјРµСЂР°
+    var type="Р—РІРѕРЅРѕРє"; 
+    var period = attachments.match( /Р·Р° РїРµСЂРёРѕРґ СЃ \d{2}\.\d{2}\.\d{4}.*?РїРѕ.*?\d{2}:\d{2}:\d{2}/i);
+    var attachments = attachments.replace( /Р·Р° РїРµСЂРёРѕРґ СЃ \d{2}\.\d{2}\.\d{4}.*?РїРѕ.*?\d{2}:\d{2}:\d{2}/i, "");
     var source1 = attachments.match( /<b>\d{12}</i);
     source1[0] = source1[0].replace( /\D/ig, "");
     
-    //перебираем проекты
+    //РїРµСЂРµР±РёСЂР°РµРј РїСЂРѕРµРєС‚С‹
     for (var k = 0; k < projects.length; k++) 
     {
       if (projects[k][5]==source1 || projects[k][6]==source1)
@@ -1166,7 +1166,7 @@ function main()
         }
         else
         {
-          source="неопределен";
+          source="РЅРµРѕРїСЂРµРґРµР»РµРЅ";
         }
       }
       var attachments = attachments.replace( /<b>\d{12}</i, "");
@@ -1178,28 +1178,28 @@ function main()
       attachments = attachments.replace(/\s/gi, " ");
       var res_phone = attachments.match(/\d{1,2}:\d{2}:\d{2}.*?<\/td>.*?<\/td>/ig);
       
-      // проверка 
+      // РїСЂРѕРІРµСЂРєР° 
       if (res_date!=null)
       {
         if (res_date.length!=res_time.length || res_time.length!=res_phone.length || res_phone.length!=res_dur.length) 
         {
-          var msg = "ошибки при парсинге отчета по звонкам";
+          var msg = "РѕС€РёР±РєРё РїСЂРё РїР°СЂСЃРёРЅРіРµ РѕС‚С‡РµС‚Р° РїРѕ Р·РІРѕРЅРєР°Рј";
           return false;
         }
-        // для каждой записи в отчете по звонкам
+        // РґР»СЏ РєР°Р¶РґРѕР№ Р·Р°РїРёСЃРё РІ РѕС‚С‡РµС‚Рµ РїРѕ Р·РІРѕРЅРєР°Рј
         var t=0;
         for (var j = 0; j < res_phone.length; j++)
-        { //если это номер входящего (обозначается <--)
+        { //РµСЃР»Рё СЌС‚Рѕ РЅРѕРјРµСЂ РІС…РѕРґСЏС‰РµРіРѕ (РѕР±РѕР·РЅР°С‡Р°РµС‚СЃСЏ <--)
           if (res_phone[j].match(/--/)!= null & res_dur[j].match(/\d{1,2}:/ig)!= null)
           { 
-            // если звонок проходит по длительности
+            // РµСЃР»Рё Р·РІРѕРЅРѕРє РїСЂРѕС…РѕРґРёС‚ РїРѕ РґР»РёС‚РµР»СЊРЅРѕСЃС‚Рё
             var tmp1 = res_dur[j].match(/\d{1,2}:/ig)[0];
             tmp1 = tmp1.replace( /:/ig, "");
             var tmp2 = res_dur[j].match(/:\d{1,2}/ig)[0];
             tmp2 = tmp2.replace( /:/ig, "");
             if (Number(tmp1) > 0 || Number(tmp2) >= LeadDur)
             {
-              // очищаем данные 
+              // РѕС‡РёС‰Р°РµРј РґР°РЅРЅС‹Рµ 
               var date = res_date[j].replace( /\./ig, "/");
               var time = res_time[j];
               var duration = res_dur[j].replace( /(>|<)/ig, "");
@@ -1244,22 +1244,22 @@ function addZero(i)
 
 function RecordToReport(ReportUrl, url, date, time, name, phone, type, duration, source, email, note, source2, rep_sheet, script_vers, PhoneNorm, land) 
 {
-  // структура отчета 
+  // СЃС‚СЂСѓРєС‚СѓСЂР° РѕС‚С‡РµС‚Р° 
   //1-A - URL
-  //2-B- Имя	
-  //3-C - Телефон	
+  //2-B- РРјСЏ	
+  //3-C - РўРµР»РµС„РѕРЅ	
   //4-D - E-mail	
-  //5-E - Лид (звонок/заявка)	
-  //6-F - Длительность	
-  //7-G - Дата	
-  //8-H - Время	
-  //9-I - Доп параметры лида
-  //10-J - Статус лида	
-  //11-K - Обработка лида	
-  //12-L - Статус клиента
-  //13-M - Подробности от клиента
-  //14-N - источник
-  //15-O - интерес
+  //5-E - Р›РёРґ (Р·РІРѕРЅРѕРє/Р·Р°СЏРІРєР°)	
+  //6-F - Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ	
+  //7-G - Р”Р°С‚Р°	
+  //8-H - Р’СЂРµРјСЏ	
+  //9-I - Р”РѕРї РїР°СЂР°РјРµС‚СЂС‹ Р»РёРґР°
+  //10-J - РЎС‚Р°С‚СѓСЃ Р»РёРґР°	
+  //11-K - РћР±СЂР°Р±РѕС‚РєР° Р»РёРґР°	
+  //12-L - РЎС‚Р°С‚СѓСЃ РєР»РёРµРЅС‚Р°
+  //13-M - РџРѕРґСЂРѕР±РЅРѕСЃС‚Рё РѕС‚ РєР»РёРµРЅС‚Р°
+  //14-N - РёСЃС‚РѕС‡РЅРёРє
+  //15-O - РёРЅС‚РµСЂРµСЃ
   //16-P - land
   // The code below opens a spreadsheet using its id and logs the name for it.
   // Note that the spreadsheet is NOT physically opened on the client side.
@@ -1270,7 +1270,7 @@ function RecordToReport(ReportUrl, url, date, time, name, phone, type, duration,
   //var lastRow = first.getLastRow();
   var values = first.getRange("C:G").getValues();
   var maxrow = first.getRange("C:G").getLastRow();
-  // Находит последнюю заполненную строку в столбцах
+  // РќР°С…РѕРґРёС‚ РїРѕСЃР»РµРґРЅСЋСЋ Р·Р°РїРѕР»РЅРµРЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ РІ СЃС‚РѕР»Р±С†Р°С…
   for (var j = 0;  (values[j][0]!="" || values[j][2]!="" || values[j][4]!="") && j < maxrow; j++){}
   lastRow = j;
   
@@ -1284,13 +1284,13 @@ function RecordToReport(ReportUrl, url, date, time, name, phone, type, duration,
     first.getRange(lastRow+1,7).setValue(date);
     first.getRange(lastRow+1,8).setValue(time);
     first.getRange(lastRow+1,9).setValue(note);
-    first.getRange(lastRow+1,10).setValue("Уточняется");
+    first.getRange(lastRow+1,10).setValue("РЈС‚РѕС‡РЅСЏРµС‚СЃСЏ");
     first.getRange(lastRow+1,14).setValue(source);
     first.getRange(lastRow+1,15).setValue(source2);
     first.getRange(lastRow+1,16).setValue(land);
   } catch (err) {
     
-    msg = "Ошибка при внесении в отчет скрипта с параметрами " + date + " " + time;
+    msg = "РћС€РёР±РєР° РїСЂРё РІРЅРµСЃРµРЅРёРё РІ РѕС‚С‡РµС‚ СЃРєСЂРёРїС‚Р° СЃ РїР°СЂР°РјРµС‚СЂР°РјРё " + date + " " + time;
     RecordToLog2(msg, "-", "-", " ", url, script_vers); 
     return false;
   }
@@ -1313,14 +1313,14 @@ function RecordToLog2(msg, project, type, period, url, script_vers)
 {
   var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1Thezoile8yXo6EzSAoVsu5uuaBuOgja12GNj2RyI6P8/edit");
   var first = ss.getSheetByName("log");
-  // вставляем данные в начало лога
+  // РІСЃС‚Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РІ РЅР°С‡Р°Р»Рѕ Р»РѕРіР°
   first.insertRowAfter(1);
   //first.activate();
   var lastRow = 1; //first.getLastRow();
   var today = new Date();
   var data = DateNorm(today);
   var time = TimeNorm(today);
-  // A - Дата,	 Время	Сообщение	Проект	Тип	Период	Источник Версия_скрипта
+  // A - Р”Р°С‚Р°,	 Р’СЂРµРјСЏ	РЎРѕРѕР±С‰РµРЅРёРµ	РџСЂРѕРµРєС‚	РўРёРї	РџРµСЂРёРѕРґ	РСЃС‚РѕС‡РЅРёРє Р’РµСЂСЃРёСЏ_СЃРєСЂРёРїС‚Р°
   
   first.getRange(lastRow+1,1).setValue(data);
   first.getRange(lastRow+1,2).setValue(time);
@@ -1342,7 +1342,7 @@ function TimeNorm(date1)
 }
 
 function PhoneNormRB(phone) 
-{ // парсим только сотовых операторов и городские г.Минск '8232607704
+{ // РїР°СЂСЃРёРј С‚РѕР»СЊРєРѕ СЃРѕС‚РѕРІС‹С… РѕРїРµСЂР°С‚РѕСЂРѕРІ Рё РіРѕСЂРѕРґСЃРєРёРµ Рі.РњРёРЅСЃРє '8232607704
   if (phone.match(/\d{9}/) == null)
   {
     return phone;
@@ -1359,7 +1359,7 @@ function PhoneNormRB(phone)
   tmp1 = tmp.match(/\d{3}$/)[0];
   tmp = tmp.replace(/\d{3}$/, "");
   phonenorm = tmp1 + phonenorm;
-  // берем код оператора
+  // Р±РµСЂРµРј РєРѕРґ РѕРїРµСЂР°С‚РѕСЂР°
   tmp1 = tmp.match(/\d{2}$/);
   if (tmp1==null)
   {
@@ -1387,7 +1387,7 @@ function PhoneNormRB(phone)
 }
 
 function PhoneNormRF(phone) 
-{ // парсим телефоны РФ
+{ // РїР°СЂСЃРёРј С‚РµР»РµС„РѕРЅС‹ Р Р¤
   if (phone.match(/\d{10}/) == null)
   {
     return phone;
@@ -1404,7 +1404,7 @@ function PhoneNormRF(phone)
   tmp1 = tmp.match(/\d{3}$/)[0];
   tmp = tmp.replace(/\d{3}$/, "");
   phonenorm = tmp1 + phonenorm;
-  // берем код оператора
+  // Р±РµСЂРµРј РєРѕРґ РѕРїРµСЂР°С‚РѕСЂР°
   tmp1 = tmp.match(/\d{3}$/);
   if (tmp1==null)
   {
